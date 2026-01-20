@@ -1,6 +1,7 @@
 package giada_tonni.DAO;
 
 import giada_tonni.entities.Evento;
+import giada_tonni.exception.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -28,4 +29,12 @@ public class EventiDAO {
          // 5. Log di controllo
          System.out.println("Evento salvato");
      }
+
+     public Evento findById(long id) throws NotFoundException {
+         Evento found = entityManager.find(Evento.class, id);
+         if(found == null) throw new NotFoundException(id);
+         return found;
+     }
+
+
 }

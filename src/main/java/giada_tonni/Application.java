@@ -3,6 +3,7 @@ package giada_tonni;
 import giada_tonni.DAO.EventiDAO;
 import giada_tonni.entities.Evento;
 import giada_tonni.entities.TipoEvento;
+import giada_tonni.exception.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -25,7 +26,13 @@ public class Application {
         Evento e3 = new Evento("Comunione", d1, "Comunione speciale", TipoEvento.PRIVATO, 200);
         // ed.save(e3);
 
-        
+        try {
+           Evento eventoTrovato = ed.findById(2);
+           System.out.println(eventoTrovato);
+        } catch (NotFoundException ex){
+            System.out.println(ex.getMessage());
+        }
+
 
 
         emf.close();
