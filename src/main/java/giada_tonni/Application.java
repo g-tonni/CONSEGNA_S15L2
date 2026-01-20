@@ -1,8 +1,13 @@
 package giada_tonni;
 
+import giada_tonni.DAO.EventiDAO;
+import giada_tonni.entities.Evento;
+import giada_tonni.entities.TipoEvento;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.time.LocalDate;
 
 public class Application {
 
@@ -11,7 +16,19 @@ public class Application {
     public static void main(String[] args) {
 
         EntityManager entityManager = emf.createEntityManager();
+        EventiDAO ed = new EventiDAO(entityManager);
 
-        System.out.println("CIAO");
+        LocalDate d1 = LocalDate.of(2026, 2, 1);
+
+        Evento e1 = new Evento("Matrimonio", d1, "Un bellissimo matrimonio", TipoEvento.PRIVATO, 300);
+        Evento e2 = new Evento("Anniversario", d1, "Anniversario stupendo", TipoEvento.PUBBLICO, 500);
+        Evento e3 = new Evento("Comunione", d1, "Comunione speciale", TipoEvento.PRIVATO, 200);
+        // ed.save(e3);
+
+        
+
+
+        emf.close();
+        entityManager.close();
     }
 }
