@@ -36,5 +36,25 @@ public class EventiDAO {
          return found;
      }
 
+     public void deleteById(long id){
+         // 1. Trovare l'evento da eliminare
+         Evento found = this.findById(id);
+
+         // 2. Creare una transazione
+         EntityTransaction transaction = entityManager.getTransaction();
+
+         // 3. Aprire la transazione
+         transaction.begin();
+
+         // 4. Rimuovere l'oggetto con un remove
+         entityManager.remove(found);
+
+         // 5. Fare il commit
+         transaction.commit();
+
+         // 6. Log di controllo
+         System.out.println("Evento eliminato");
+     }
+
 
 }

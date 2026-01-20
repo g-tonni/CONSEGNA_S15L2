@@ -33,7 +33,11 @@ public class Application {
             System.out.println(ex.getMessage());
         }
 
-
+        try {
+            ed.deleteById(4);
+        } catch (NotFoundException ex){
+            System.out.println(ex.getMessage());
+        }
 
         emf.close();
         entityManager.close();
