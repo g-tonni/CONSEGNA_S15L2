@@ -8,6 +8,6 @@ public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("consegnas15l2pu");
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("CIAO");
     }
 }
